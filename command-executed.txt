@@ -1,7 +1,8 @@
 $ rails new depot
 
 depot$ rails generate scaffold Product title:string description:text image_url:string price:decimal
-depot$ rake db:migrate
+depot$ rake db:migrate    # Create the structure of Product in the DB
 depot$ rails server       # Play (Development: depot) in RubyMine
 depot$ rake test          # Play (test: depot) in RubyMine
 
+depot$ rake db:seed       # Populate de DB with specific data (Erasing previous data)
