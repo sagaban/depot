@@ -7,5 +7,9 @@ class Product < ActiveRecord::Base
                           message: 'must be a URL for GIF, JPG or PNG image.'
                       }
 
+  # we only need to re-render things if a product changed
+  def self.latest
+    Product.order(:updated_at).last
+  end
 
 end

@@ -4,13 +4,21 @@
 
 <h1>Your Pragmatic Catalog</h1>
 
-<% @products.each do |product| %>
-  <div class="entry">
-    <%= image_tag(product.image_url) %>
-    <h3><%= product.title %></h3>
-    <%= sanitize(product.description) %>
-    <div class="price_line">
-      <span class="price"><%= number_to_currency(product.price) %></span>
-    </div>
-  </div>
+<% cache ['store', Product.latest] do %>
+  <% @products.each do |product| %>
+    <% cache ['entry', product] do %>
+      <div class="entry">
+        <%= image_tag(product.image_url) %>
+        <h3><%= product.title %></h3>
+        <%= sanitize(product.description) %>
+        <div class="price_line">
+          <span class="price"><%= number_to_currency(product.price) %></span>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
 <% end %>
+
+<!--
+In addition to bracketing the sections, we identify the components of the name for each cache entry. We make the choice to call the overall cache entry store and the individual cache entries entry. We also associate a product with each, namely, the latest with the overall store and the individual product we are rendering with the entry
+-->
