@@ -6,3 +6,5 @@ depot$ rails server       # Play (Development: depot) in RubyMine
 depot$ rake test          # Play (test: depot) in RubyMine
 
 depot$ rake db:seed       # Populate de DB with specific data (Erasing previous data)
+
+depot$ rails generate controller Store index       # Populate de DB with specific data (Erasing previous data)
