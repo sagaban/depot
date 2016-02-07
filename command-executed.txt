@@ -10,3 +10,6 @@ depot> rake db:seed       # Populate de DB with specific data (Erasing previous 
 depot> rails generate controller Store index       # Populate de DB with specific data (Erasing previous data)
 
 depot> rake test:controllers
+
+depot> rails generate scaffold Cart
+depot> rake db:migrate
