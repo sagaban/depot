@@ -1,4 +1,8 @@
 class Product < ActiveRecord::Base
+  has_many :line_items
+
+  before_destroy :ensure_not_referenced_by_any_line_item
+
   validates :title, :description, :image_url, presence: true
   validates :price, numericality: {greater_than_or_equal_to: 0.01}
   validates :title, uniqueness: true
@@ -10,6 +14,22 @@ class Product < ActiveRecord::Base
   # we only need to re-render things if a product changed
   def self.latest
     Product.order(:updated_at).last
+  end
+
+  private
+  # ensure that there are no line items referencing this product
+  def ensure_not_referenced_by_any_line_item
+    if line_items.empty?
+      return true
+    else
+      errors.add(:base, 'Line Items present')
+=begin
+      Note that we have direct access to the errors object. This is the same place that the validates() stores error
+      messages. Errors can be associated with individual attributes, but in this case we associate the error with the
+      base object.
+=end
+      return false
+    end
   end
 
 end
