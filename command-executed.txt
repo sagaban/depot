@@ -24,3 +24,6 @@ depot> rails generate migration combine_items_in_cart
 depot> rake db:migrate
 depot> rake db:rollback
 depot> rake db:migrate:status
+
+depot> rake log:clear LOGS=test
+depot> rake test:controllers
