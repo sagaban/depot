@@ -19,3 +19,8 @@ depot> rake db:migrate
 
 depot> rails generate migration add_quantity_to_line_items quantity:integer
 depot> rake db:migrate
+
+depot> rails generate migration combine_items_in_cart
+depot> rake db:migrate
+depot> rake db:rollback
+depot> rake db:migrate:status
