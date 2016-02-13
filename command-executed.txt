@@ -27,3 +27,7 @@ depot> rake db:migrate:status
 
 depot> rake log:clear LOGS=test
 depot> rake test:controllers
+
+# Due to a gem was added to Gemfile
+depot> bundle install
+
